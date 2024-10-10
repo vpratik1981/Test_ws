@@ -1,0 +1,47 @@
+from langchain_groq import ChatGroq
+import getpass
+import os
+
+import os
+
+from groq import Groq
+
+client = Groq(
+    api_key=os.environ.get('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'),
+)
+
+chat_completion = client.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": "Explain the importance of fast language models",
+        }
+    ],
+    model="llama3-8b-8192",
+)
+
+print(chat_completion.choices[0].message.content)
+
+if "GROQ_API_KEY" not in os.environ:
+    os.environ["GROQ_API_KEY"] = getpass.getpass('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')
+
+# print(os.environ['GROQ_API_KEY'])
+# llm = ChatGroq(
+#     model="llama3-8b-8192",
+#     temperature=0,
+#     max_tokens=None,
+#     timeout=None,
+#     max_retries=2,
+#     # other params...
+# )
+
+# ai_msg = llm.invoke(messages)
+# print(ai_msg.content)
+
+messages = [
+    (
+        "system",
+        "You are a helpful assistant that translates English to French. Translate the user sentence.",
+    ),
+    ("human", "I love programming."),
+]
